@@ -21,17 +21,18 @@ if [ ! -d "$folder" ]
 for file in "$folder"/*
   do
     if [ -f "$file" ]
-			then
+      then
       	owner=$(stat -c "%U" "$file")
       	owner_folder="$folder/$owner"
       
     		if [ ! -d "$owner_folder" ]
-			  	then
+	          then
       			mkdir "$owner_folder"
-						echo "creating owner's folder "$owner_folder""
-    		fi
-    		mv "$file" "$owner_folder"
-				chown "$owner" "$owner_folder"
-				echo "moving "$file" to "$owner_folder""
+			echo "creating owner's folder "$owner_folder""
+    		  fi
+	
+    		  mv "$file" "$owner_folder"
+		  chown "$owner" "$owner_folder"
+		  echo "moving "$file" to "$owner_folder""
   		fi
-	done
+  done
